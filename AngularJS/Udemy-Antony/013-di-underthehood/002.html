@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../../angular.js"></script>
+</head>
+<body ng-controller="mainController">
+<div ng-controller="anotherController"></div>
+<h2>Try the order of injected parameters</h2>
+<script>
+    angular.module('app', [])
+            .controller('mainController', function($log, $scope) {
+                console.log($scope);
+                console.log($log);
+            })
+            .controller('anotherController', ['$log', '$scope', function($scope, $log) {
+                console.log($log);
+                console.log($scope);
+            }])
+
+</script>
+</body>
+</html>

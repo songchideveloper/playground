@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../../angular.js"></script>
+</head>
+<body ng-controller="mainController">
+{{hello}}
+<script>
+angular.module('app', [])
+        .controller('mainController', function($scope) {
+            $scope.hello = 'hey there';
+        })
+
+
+    var searchPeople = function(name, $scope, age, address) {
+        return 'chi song';
+    }
+
+    var data = angular.injector().annotate(searchPeople);
+
+    console.log(data);
+
+
+
+</script>
+</body>
+</html>

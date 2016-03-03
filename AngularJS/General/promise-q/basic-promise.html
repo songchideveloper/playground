@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Promise</title>
+    <script src="../../../angular.js"></script>
+    <script src="../../../angular-route.js"></script>
+</head>
+<body ng-controller="mainController">
+
+
+<script>
+(function(){
+    angular.module('app', [])
+        .controller('mainController', ['$scope', '$q', function($scope, $q){
+            var defer = $q.defer();
+            defer.promise
+                .then(function(name){   // promise whats gonna happen in the futrue
+                    alert('I promise i would show up in the futrue ' + name);
+                    return 'Tara';  // return data for the next chain element
+                })
+                .then(function(name){   // promise whats gonna happen in the futrue
+                    alert('Me too ' + name);
+                    return 'Lin'
+                })
+                .then(function(name){   // promise whats gonna happen in the futrue
+                    alert('I promise i would show up in the futrue ' + name);
+                });
+            defer.resolve('Chi'); // fire off the promise
+        }]);
+})()
+</script>
+</body>
+</html>

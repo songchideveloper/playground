@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../../angular.js"></script>
+
+</head>
+<body ng-controller="mainController">
+
+<button ng-click="getOnSuccess()"> Get on success</button>
+<br>
+<button ng-click="getOnThen()">Get on then</button>
+<br>
+<button ng-click="getOnThenFailed()">Get on then failed</button>
+<br>
+<button ng-click="getByService()">Get by service</button>
+<br>
+<button ng-click="getOnPromiseQ()">Get on promise $q</button>
+
+<script>
+    angular.module('app', [])
+            .factory('MyService', function($http){
+
+                return {
+                    getName: function() {
+                        return $http.get('http://uinames.com/api/')
+                    }
+                }
+            })
+            .controller('mainController', function($scope, $http, $log){
+                $scope.getOnSuccess = function(){
+                    $http.get('http://uinames.com/api/')
+                            .success(function(response){
+                                console.log('getOnSuccess successed');
+                                $log.log(response);
+                            })
+                }
+
+
+                $scope.getOnThen = function(){
+                    $http.get('http://uinames.com/api/')
+                            .then(function(response){
+                                console.log('getOnThen successed')
+                                console.log(response)
+                                console.log(response.data)
+                            })
+                }
+
+                $scope.getOnThenFailed = function(){
+                    $http.get('http://uinames.com/api/xxxx')
+                            .then(function(response){
+                                console.log('getOnThenFailed successed')
+                                console.log(response)
+                                console.log(response.data)
+                            }, function(error){
+                                console.log('getOnThenFailed failed')
+                                console.log(error)
+                            })
+                }
+
+                $scope.getByService = function(MyService) {
+                    var response = MyService.getName();
+                    console.log(response);
+                }
+
+
+
+            })
+</script>
+</body>
+</html>

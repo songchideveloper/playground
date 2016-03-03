@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Two function names</title>
+    <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-1.22.0.css">
+    <script src="https://code.jquery.com/qunit/qunit-1.22.0.js"></script>
+</head>
+<body>
+<div id="qunit"></div>
+<script>
+    var foo = function bar() {
+        console.log('Am I foo or bar?');
+    };
+//    bar();
+    foo();
+
+    QUnit.test('hello test', function(assert){
+        assert.equal(1,2,'equal');
+    })
+
+
+</script>
+</body>
+</html>

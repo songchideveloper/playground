@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Scope</title>
+    <script src="../../../angular.js"></script>
+</head>
+<body ng-controller="mainController">
+{{hello}}
+<script>
+    (function(){
+        angular.module('app', [])
+            .controller('mainController', function($scope){
+                $scope.hello = 'hey there';
+                $scope.greeting = function(){
+                    console.log('hello angular');
+                };
+                console.log($scope);
+
+            })
+    })()
+
+</script>
+</body>
+</html>

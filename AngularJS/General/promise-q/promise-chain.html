@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise chanin</title>
+    <script src="../../../angular.js"></script>
+</head>
+<body ng-controller="mainController">
+<h2>{{hello}}</h2>
+
+<footer>
+    <a href="https://github.com/songchideveloper/angularjs-FlightDashboard" target="_blank">Git source</a>
+</footer>
+<script>
+(function(){
+angular.module('app', [])
+    .controller('mainController', function($scope, $q){
+        var defer = $q.defer();
+        defer.resolve({
+            id: '001',
+            name: 'chisong'
+        });
+
+        console.log(defer.promise);
+        defer.promise
+                .then(function(response){
+                    console.log(response);
+                    return 'bbb'
+                })
+                .then(function(data){
+                    console.log(data);
+                    return 'ccc'
+                })
+                .then(function(data){
+                    console.log(data)
+                })
+
+    });
+
+
+
+})();
+</script>
+</body>
+</html>

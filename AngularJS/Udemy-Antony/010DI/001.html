@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dependency Injection</title>
+</head>
+<body>
+<h2>DI is nothing but passing object to a function instead creating the object inside the function.</h2>
+<script>
+    function Person(first, last){
+        this.firsrname = first;
+        this.lastname = last;
+    }
+
+//    function logName(){
+//        var p1 = new Person('chi', 'song');
+//        console.log(p1);
+//    }
+
+    function logName(person){
+
+        console.log(person);
+    }
+
+    var p1 = new Person('chi', 'song');
+    logName(p1)
+</script>
+</body>
+</html>

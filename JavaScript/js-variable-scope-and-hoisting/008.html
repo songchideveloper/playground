@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function declaration overrides variable declaration when Hoisted</title>
+</head>
+<body>
+<h2>
+    1. Both function declaration and variable declaration are hoisted. <br>
+    2. The function decalaration will override the variable declaration. <br>
+    3. BUt the function declaration CANNOT override the variable assignmetn. <br>
+    4. Neither function assignment nor variable assignment will be hoisted. <br>
+</h2>
+<script>
+    (function(){
+        var foo;
+        function foo() {}
+        console.log('typeof foo: ' + typeof foo); // => function
+    })();
+
+    (function(){
+        var foo = 'abc';
+        function foo() {}
+        console.log('typeof foo: ' + typeof foo); // ==> string
+//        foo();  // error: foo is not a function;
+    })();
+
+    (function(){
+        var foo = 'abc';
+        var foo = function() {}
+        console.log('typeof foo: ' + typeof foo); // ==> function
+        foo();  //pass
+    })();
+
+</script>
+</body>
+</html>

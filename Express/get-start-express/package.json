@@ -1,0 +1,21 @@
+{
+  "name": "get-start-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server02.js",
+    "dev": "nodemon server04.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "lodash": "^4.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.1"
+  }
+}

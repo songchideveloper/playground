@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../../angular.js"></script>
+</head>
+<body ng-controller="mainController">
+<h2>
+    In this example, <br>
+    1. I've create a custom filter that takes an input string, make it lower case, and replace
+    all the blank space with '-'. <br>
+    2. Tested out the $watch method <br>
+    3. The $timeout is for the next experiment.
+</h2>
+<label for="">Your GitHub account: </label>
+<input type="text" ng-model="handler" autofocus>
+<div>www.github.com/{{handlerFormatted()}}</div>
+
+<script>
+    angular.module('app', [])
+            .filter('accountFormat', function(){
+                return function(input){
+                    return input.toLowerCase().split(' ').join('-');
+                }
+            })
+            .controller('mainController', function($scope, $filter, $timeout) {
+                $scope.handler = '';
+                $scope.handlerFormatted = function(){
+                    return $filter('accountFormat')($scope.handler)
+                }
+
+                $timeout(function(){
+                    $scope.handler = 'will song';
+                    console.log('setted handler');
+                }, 1000)
+
+                var counter = 0;
+                // see what the '$watch' does
+                $scope.$watch('handler', function(newValue, oldValue){
+                    counter ++;
+                    console.info('$handle changed ' + counter + ' times!');
+                    console.log('Old value: ' + oldValue);
+                    console.log('New value: ' + newValue);
+                })
+            })
+
+</script>
+</body>
+</html>

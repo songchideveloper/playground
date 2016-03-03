@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoisting inside a function</title>
+</head>
+<body>
+<script>
+    function foo() {
+        bar();
+
+        function bar() {
+            console.log('called function bar()');
+        }
+    }
+
+
+    function stealthCheck(){
+
+        return stealth();
+
+        function stealth(){ return true; }
+    }
+
+    console.log(stealthCheck());
+    foo();
+
+</script>
+</body>
+</html>

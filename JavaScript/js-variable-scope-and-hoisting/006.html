@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settimeout always global sceop</title>
+</head>
+<body>
+<h3>
+    Note that all functions in setTimeout are executed in the global scope.
+</h3>
+<script>
+    var name = 'will'
+    var person = {
+        name: 'chisong',
+        info: function(){
+            setTimeout(function(){
+                console.log(this.name);
+            }, 100);
+        }
+    }
+    person.info();  // ==> will
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Function Level Scope</title>
+</head>
+<body>
+<script>
+    var name = 'will';
+    function foo() {
+        var name = 'chi';
+        console.log(name);
+    }
+    foo();
+    console.log(name);
+</script>
+</body>
+</html>

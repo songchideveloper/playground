@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Property function outside object</title>
+</head>
+<body>
+<script>
+    var person = {
+        location: 'Boston',
+        getName: getPersonName
+    };
+
+
+    function getPersonName(){
+        console.log(this.location);
+    }
+
+
+    person.getName();
+
+    getPersonName();
+</script>
+</body>
+</html>

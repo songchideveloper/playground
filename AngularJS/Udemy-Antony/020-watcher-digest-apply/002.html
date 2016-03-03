@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../../angular.js"></script>
+</head>
+<body ng-controller="mainController">
+<h2>
+    1. Using $apply method to make sure the out-of-angular-context scope will also be binded and updated accordingly
+</h2>
+<label for="">Your GitHub account: </label>
+<input type="text" ng-model="inputText" >
+<hr>
+<label for="">Another input field</label>
+<input type="text" ng-model="inputText2" >
+
+<script>
+    angular.module('app', [])
+            .controller('mainController', function($scope, $timeout) {
+                $scope.inputText = '';
+                $scope.inputText2 = '';
+
+                $timeout(function(){
+                    $scope.inputText = ' chi song '
+                    console.log('input changed!')
+                }, 1000)
+
+
+                // using $apply to binding the out-of-angular-scope variable
+                setTimeout(function(){
+                    $scope.$apply(function(){
+                        $scope.inputText2  = ' tara lin '
+                        console.log('input2 changed!')
+                    })
+                }, 1100)
+
+            })
+
+</script>
+</body>
+</html>

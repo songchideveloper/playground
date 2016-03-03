@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>
+    Closures have access to the outer function's variable even after the outer function
+    returns.
+</h2>
+<script>
+    function greetingName(greeting) {
+        var msg = greeting;
+        return function(name) {
+            return msg + ' ' + name;
+        }
+    }
+
+    var hello = greetingName("Hello");
+    console.log(hello('Chisong'));
+</script>
+</body>
+</html>
