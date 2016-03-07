@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery ajax</title>
+</head>
+<body>
+
+
+<button type="button" id="btnGetName">Get Name</button>
+<select name="gender" id="selectGender">
+    <option value=""> - </option>
+    <option value="male">Male</option>
+    <option value="female">Female</option>
+</select>
+<div id="containerPerson"></div>
+
+
+
+<script src="//code.jquery.com/jquery-2.2.1.js"></script>
+<script>
+    $(document).ready(function(){
+
+
+
+
+        var baseUrl = 'http://uinames.com/api/?';
+
+        var NameUI = {
+            person: function() {
+                var promise = $.ajax({
+                    method: 'GET',
+                    url: baseUrl
+                });
+
+                return promise;
+            }
+        };
+
+
+
+    $('#btnGetName').on('click', function(){
+        var genderUrl = 'gender=' + $('#selectGender').val();
+        console.log('gender: ' + $('#selectGender').val());
+        var personPromise = NameUI.person();
+        personPromise.done(function(data){
+            console.log(data);
+            $.each(data, function(key, value){
+                $('#containerPerson').append(key + " : " + value + "<br />")
+            });
+            $('#containerPerson').append('<br />');
+        });
+    });
+
+
+});
+</script>
+</body>
+</html>

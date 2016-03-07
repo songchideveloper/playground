@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery ajax</title>
+</head>
+<body>
+
+
+<button type="button" id="btn1">Get </button>
+<div id="containerResult"></div>
+
+<!--<img src="http://placehold.it/150/30ac17" alt="">-->
+
+<script src="//code.jquery.com/jquery-2.2.1.js"></script>
+<script>
+$(document).ready(function(){
+
+    var root = 'http://jsonplaceholder.typicode.com';
+
+    var User = {
+        getUser1: function() {
+            var promise = $.Deferred();
+            $.ajax({
+                method: 'GET',
+                url: root + '/users/1',
+                success: function(data) {
+                    promise.resolve('1. USERNAME: ' + data.username + ' (' + data.email + ')');
+                }
+            });
+            return promise;
+        }
+
+    };
+
+    var Photo = {
+        getPhoto1: function() {
+            var promise = $.Deferred();
+            $.ajax({
+                method: 'GET',
+                url: root + '/photos/1',
+                success: function(data){
+                    promise.resolve('2. POSTER: ' + data.thumbnailUrl);
+                }
+            });
+            return promise;
+        }
+    };
+
+    var Comment = {
+        getComment1: function(){
+            var promise = $.Deferred();
+            $.ajax({
+                method: 'GET',
+                url: root + '/comments/1',
+                success: function(data) {
+                    promise.resolve('3. COMMENTS: ' + data.name);
+                }
+            });
+            return promise;
+        }
+    };
+
+    $('#btn1').on('click', function(){
+        User.getUser1().done(function(data){
+            console.log(data);
+            $('#containerResult').append(data);
+            $('#containerResult').append('<br />');
+        });
+        Photo.getPhoto1().done(function(data){
+            console.log(data);
+            $('#containerResult').append(data);
+            $('#containerResult').append('<br />');
+        });
+        Comment.getComment1().done(function(data){
+            console.log(data);
+            $('#containerResult').append(data);
+            $('#containerResult').append('<br />');
+        });
+        $('#containerResult').append('<br />');
+
+    });
+
+
+
+});
+</script>
+</body>
+</html>

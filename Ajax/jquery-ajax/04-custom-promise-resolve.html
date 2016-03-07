@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery ajax</title>
+</head>
+<body>
+
+
+<button type="button" id="btnGetName">Get Name</button>
+<div id="containerPerson"></div>
+
+
+
+<script src="//code.jquery.com/jquery-2.2.1.js"></script>
+<script>
+    $(document).ready(function(){
+
+        var baseUrl = 'http://uinames.com/api/?';
+
+        var NameUI = {
+            person: function() {
+                var promise = $.Deferred();
+                $.ajax({
+                    method: 'GET',
+                    url: baseUrl,
+                    success: function(data) {
+                        promise.resolve('NAME: ' + data.name + ' ' + data.surname + '<br /> GENDER: ' + data.gender + '<br /> REGION: ' + data.region);
+                    }
+                });
+                return promise;
+            }
+        };
+
+    $('#btnGetName').on('click', function(){
+        var personPromise = NameUI.person();
+        personPromise.done(function(data){
+            console.log(data);
+            $('#containerPerson').html(data);
+        });
+    });
+
+
+});
+</script>
+</body>
+</html>
